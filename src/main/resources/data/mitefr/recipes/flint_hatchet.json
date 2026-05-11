@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FF",
+    "FB",
+    " S"
+  ],
+  "key": {
+    "F": {"item": "minecraft:flint"},
+    "B": {"item": "minecraft:bone"},
+    "S": {"item": "mitefr:plant_fiber"}
+  },
+  "result": {"item": "mitefr:flint_hatchet", "count": 1}
+}

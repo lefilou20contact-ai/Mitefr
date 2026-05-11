@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "mitefr:medicinal_herb"},
+    {"item": "mitefr:medicinal_herb"},
+    {"item": "mitefr:medicinal_herb"},
+    {"item": "mitefr:salt"}
+  ],
+  "result": {"item": "mitefr:anti_gangrene", "count": 1}
+}

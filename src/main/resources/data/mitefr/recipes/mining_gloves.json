@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L L",
+    "L L",
+    "   "
+  ],
+  "key": {
+    "L": {"item": "minecraft:leather"}
+  },
+  "result": {"item": "mitefr:mining_gloves", "count": 1}
+}

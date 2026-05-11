@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "B": {"item": "minecraft:bone"},
+    "S": {"item": "mitefr:plant_fiber"}
+  },
+  "result": {"item": "mitefr:bone_pick", "count": 1}
+}

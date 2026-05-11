@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "mitefr:empty_canteen"},
+    {"item": "mitefr:charcoal_filter"},
+    {"item": "minecraft:water_bucket"}
+  ],
+  "result": {"item": "mitefr:filtered_canteen", "count": 1}
+}

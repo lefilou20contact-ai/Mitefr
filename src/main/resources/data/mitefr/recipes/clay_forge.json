@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "C C",
+    "CCC"
+  ],
+  "key": {
+    "C": {"item": "minecraft:brick"}
+  },
+  "result": {"item": "mitefr:clay_forge", "count": 1}
+}

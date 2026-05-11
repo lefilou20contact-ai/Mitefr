@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LCL",
+    "LFL",
+    "   "
+  ],
+  "key": {
+    "L": {"item": "minecraft:leather"},
+    "C": {"item": "mitefr:charcoal_filter"},
+    "F": {"item": "mitefr:plant_fiber"}
+  },
+  "result": {"item": "mitefr:gas_mask", "count": 1}
+}

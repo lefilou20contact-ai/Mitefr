@@ -1,0 +1,35 @@
+{
+  "itemGroup.mitefr.main": "MITE-FR",
+
+  "item.mitefr.flint_knife":        "Flint Knife",
+  "item.mitefr.flint_hatchet":      "Flint Hatchet",
+  "item.mitefr.bone_pick":          "Bone Pick",
+  "item.mitefr.plant_fiber":        "Plant Fiber",
+  "item.mitefr.crude_copper_ingot": "Crude Copper Ingot",
+  "item.mitefr.bronze_ingot":       "Bronze Ingot",
+  "item.mitefr.charcoal_filter":    "Charcoal Filter",
+  "item.mitefr.salt":               "Salt",
+  "item.mitefr.medicinal_herb":     "Medicinal Herb",
+  "item.mitefr.void_fragment":      "Void Fragment",
+  "item.mitefr.empty_canteen":      "Empty Canteen",
+  "item.mitefr.filtered_canteen":   "Filtered Canteen",
+  "item.mitefr.herb_poultice":      "Herb Poultice",
+  "item.mitefr.anti_gangrene":      "Anti-Gangrene Remedy",
+  "item.mitefr.citrus_extract":     "Citrus Extract",
+  "item.mitefr.gas_mask":           "Gas Mask",
+  "item.mitefr.mining_gloves":      "Mining Gloves",
+  "item.mitefr.camp_kit":           "Camp Kit",
+  "item.mitefr.clay_forge":         "Clay Forge",
+  "item.mitefr.bronze_forge":       "Bronze Forge",
+  "item.mitefr.master_anvil":       "Master Anvil",
+  "item.mitefr.void_workshop":      "Void Workshop",
+
+  "block.mitefr.clay_forge":        "Clay Forge",
+  "block.mitefr.bronze_forge":      "Bronze Forge",
+  "block.mitefr.master_anvil":      "Master Anvil",
+  "block.mitefr.void_workshop":     "Void Workshop",
+
+  "entity.mitefr.hill_scavenger":   "Hill Scavenger",
+  "entity.mitefr.cave_shade":       "Cave Shade",
+  "entity.mitefr.swamp_specter":    "Swamp Specter"
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "mitefr",
+  "version": "${version}",
+  "name": "MITE-FR",
+  "description": "Minecraft Is Too Easy — Version Française Renforcée. Survie hardcore avec progression par ères, maladies, température, et bien plus.",
+  "authors": ["MITE-FR Team"],
+  "contact": {
+    "sources": "https://github.com/mitefr/mitefr"
+  },
+  "license": "MIT",
+  "icon": "assets/mitefr/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["fr.mitefr.MiteFRMod"],
+    "client": ["fr.mitefr.MiteFRClient"]
+  },
+  "mixins": ["mitefr.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.15.6",
+    "fabric-api": "*",
+    "minecraft": "~1.20.4"
+  }
+}

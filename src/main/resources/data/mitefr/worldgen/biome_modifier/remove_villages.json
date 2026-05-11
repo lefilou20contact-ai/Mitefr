@@ -1,0 +1,12 @@
+{
+  "type": "fabric:remove_features",
+  "biomes": "#minecraft:has_structure/village",
+  "features": [
+    "minecraft:village_plains",
+    "minecraft:village_desert",
+    "minecraft:village_savanna",
+    "minecraft:village_snowy",
+    "minecraft:village_taiga"
+  ],
+  "step": "surface_structures"
+}

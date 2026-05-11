@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:charcoal"},
+    {"item": "minecraft:charcoal"},
+    {"item": "mitefr:plant_fiber"}
+  ],
+  "result": {"item": "mitefr:charcoal_filter", "count": 2}
+}

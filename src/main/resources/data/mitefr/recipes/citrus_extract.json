@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:sweet_berries"},
+    {"item": "minecraft:sweet_berries"},
+    {"item": "mitefr:medicinal_herb"}
+  ],
+  "result": {"item": "mitefr:citrus_extract", "count": 2}
+}

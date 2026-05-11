@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "B B",
+    "BBB"
+  ],
+  "key": {
+    "B": {"item": "mitefr:bronze_ingot"}
+  },
+  "result": {"item": "mitefr:bronze_forge", "count": 1}
+}

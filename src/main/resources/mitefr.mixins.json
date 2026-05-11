@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.mitefr.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
+    "LivingEntityMixin",
+    "HungerManagerMixin",
+    "MobEntityMixin",
+    "AbstractSkeletonEntityMixin",
+    "ZombieEntityMixin",
+    "BlockMixin",
+    "ItemMixin",
+    "FoodComponentMixin",
+    "WorldMixin"
+  ],
+  "client": [
+    "GameRendererMixin",
+    "InGameHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

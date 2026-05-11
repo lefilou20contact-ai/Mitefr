@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "mitefr:medicinal_herb"},
+    {"item": "mitefr:medicinal_herb"},
+    {"item": "mitefr:plant_fiber"}
+  ],
+  "result": {"item": "mitefr:herb_poultice", "count": 2}
+}
