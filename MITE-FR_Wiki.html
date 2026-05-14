@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MITE-FR — Wiki Complet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════════ */
+:root {
+  --bg:        #0b0900;
+  --bg2:       #111008;
+  --bg3:       #181510;
+  --panel:     #1c1810;
+  --border:    #3a3020;
+  --border2:   #2a2218;
+  --gold:      #c8973a;
+  --gold2:     #e8c060;
+  --gold3:     #fff0b0;
+  --red:       #8b2020;
+  --red2:      #cc3333;
+  --green:     #2a6030;
+  --green2:    #4aaa50;
+  --blue:      #204060;
+  --blue2:     #4a80b0;
+  --purple:    #3a1850;
+  --purple2:   #8040c0;
+  --text:      #d8c898;
+  --text2:     #9a8860;
+  --text3:     #6a5840;
+  --mc-dirt:   #866043;
+  --mc-stone:  #888888;
+  --mc-wood:   #a07040;
+  --mc-iron:   #d8d0c8;
+  --mc-gold:   #f0d030;
+  --mc-diamond:#40e0f0;
+  --mc-copper: #cc7040;
+  --mc-bronze: #b08030;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'IM Fell English',Georgia,serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* ═══════════════════════════════════════════════
+   NOISE TEXTURE OVERLAY
+═══════════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+
+/* ═══════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════ */
+.wrapper{display:flex;min-height:100vh;position:relative;z-index:1}
+
+/* Sidebar */
+aside{
+  width:220px;min-width:220px;background:var(--bg2);
+  border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  flex-shrink:0;
+}
+aside::-webkit-scrollbar{width:4px}
+aside::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+.aside-title{
+  padding:20px 16px 12px;
+  font-family:'Cinzel Decorative',serif;
+  font-size:1rem;color:var(--gold2);
+  border-bottom:1px solid var(--border);
+  letter-spacing:2px;
+}
+.aside-section{padding:8px 0}
+.aside-section-label{
+  padding:6px 16px 2px;
+  font-size:.65rem;letter-spacing:2px;
+  color:var(--text3);text-transform:uppercase;
+}
+aside a{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 16px;color:var(--text2);
+  text-decoration:none;font-size:.82rem;
+  font-family:'Cinzel',serif;
+  transition:all .15s;border-left:2px solid transparent;
+}
+aside a:hover,aside a.active{
+  color:var(--gold);border-left-color:var(--gold);
+  background:rgba(200,151,58,.06);
+}
+aside a .ico{font-size:.9rem;width:16px;text-align:center}
+
+/* Main */
+main{flex:1;padding:0 48px 80px;max-width:900px}
+@media(max-width:900px){
+  aside{display:none}
+  main{padding:0 20px 60px}
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+.hero{
+  text-align:center;padding:60px 40px 50px;
+  background:radial-gradient(ellipse at 50% -10%,rgba(200,151,58,.18) 0%,transparent 60%);
+  border-bottom:1px solid var(--border);
+  margin-bottom:0;
+}
+.hero-skull{font-size:2.8rem;display:block;margin-bottom:10px;
+  animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  color:var(--gold2);
+  text-shadow:0 0 60px rgba(200,151,58,.4),0 2px 0 #000;
+  letter-spacing:6px;margin-bottom:6px;
+}
+.hero-sub{font-size:.82rem;letter-spacing:3px;color:var(--text3);text-transform:uppercase}
+.hero-quote{margin-top:18px;font-style:italic;color:var(--red2);font-size:1rem;
+  text-shadow:0 0 20px rgba(200,60,60,.3)}
+.hero-badges{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.hbadge{
+  font-size:.7rem;letter-spacing:1px;padding:4px 12px;border-radius:2px;
+  border:1px solid;font-family:'JetBrains Mono',monospace;
+}
+.hbadge.mc{border-color:var(--gold);color:var(--gold)}
+.hbadge.fabric{border-color:var(--blue2);color:var(--blue2)}
+.hbadge.hard{border-color:var(--red2);color:var(--red2)}
+
+/* ═══════════════════════════════════════════════
+   SECTION HEADINGS
+═══════════════════════════════════════════════ */
+.section{margin-top:56px}
+.section-title{
+  font-family:'Cinzel',serif;
+  font-size:1.5rem;color:var(--gold);
+  border-bottom:1px solid var(--border);
+  padding-bottom:10px;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-title .ico{font-size:1.3rem}
+h3{font-family:'Cinzel',serif;font-size:1.05rem;
+  color:var(--gold2);margin:24px 0 10px}
+p{margin-bottom:12px}
+
+/* ═══════════════════════════════════════════════
+   MINECRAFT CRAFTING GRID
+═══════════════════════════════════════════════ */
+.craft-wrapper{
+  display:flex;align-items:flex-start;gap:0;
+  background:var(--panel);border:2px solid #5a5040;
+  border-radius:4px;padding:16px 20px;margin:16px 0;
+  max-width:420px;position:relative;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.5);
+}
+.craft-wrapper::before{
+  content:'ÉTABLI DE SURVIE';
+  position:absolute;top:-10px;left:12px;
+  background:var(--panel);padding:0 8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;letter-spacing:2px;color:var(--text3);
+}
+.craft-grid{
+  display:grid;grid-template-columns:repeat(3,42px);
+  grid-template-rows:repeat(3,42px);gap:3px;
+}
+.craft-cell{
+  width:42px;height:42px;
+  background:#374030;
+  border:2px solid #1a1a0a;
+  border-right-color:#5a5040;border-bottom-color:#5a5040;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;cursor:default;position:relative;
+  transition:background .1s;
+}
+.craft-cell:hover{background:#404830;z-index:1}
+.craft-cell .qty{
+  position:absolute;bottom:1px;right:2px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.55rem;color:#fff;text-shadow:1px 1px 0 #000;
+}
+.craft-arrow{
+  font-size:1.6rem;color:var(--gold);
+  display:flex;align-items:center;padding:0 14px;
+  align-self:center;opacity:.8;
+}
+.craft-result{
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;
+}
+.craft-result-cell{
+  width:52px;height:52px;
+  background:#2a3020;
+  border:2px solid #1a1a0a;
+  border-right-color:#7a7050;border-bottom-color:#7a7050;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;position:relative;
+  box-shadow:inset 0 0 8px rgba(0,0,0,.3);
+}
+.craft-result-cell .qty{
+  position:absolute;bottom:2px;right:3px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;color:#fff;font-weight:700;
+  text-shadow:1px 1px 0 #000,0 0 4px #000;
+}
+.craft-name{
+  font-size:.72rem;color:var(--text2);text-align:center;
+  font-family:'JetBrains Mono',monospace;max-width:70px;
+}
+
+/* Shapeless tag */
+.craft-wrapper.shapeless::after{
+  content:'SANS FORME';
+  position:absolute;bottom:-10px;right:12px;
+  background:var(--panel);padding:0 6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.58rem;letter-spacing:1px;color:var(--blue2);
+}
+
+/* ═══════════════════════════════════════════════
+   ERA TREE
+═══════════════════════════════════════════════ */
+.era-tree{display:flex;flex-direction:column;gap:0;margin:20px 0}
+.era-node{
+  display:flex;align-items:stretch;gap:0;
+  cursor:pointer;
+}
+.era-connector{
+  width:32px;min-width:32px;display:flex;flex-direction:column;
+  align-items:center;
+}
+.era-connector-line{width:2px;background:var(--border);flex:1;margin:0 auto}
+.era-connector-dot{
+  width:12px;height:12px;border-radius:50%;
+  border:2px solid var(--gold);background:var(--bg);
+  margin:4px auto;flex-shrink:0;
+}
+.era-card{
+  flex:1;background:var(--panel);border:1px solid var(--border);
+  margin:4px 0;border-radius:3px;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.era-card:hover{border-color:var(--gold);box-shadow:0 0 16px rgba(200,151,58,.1)}
+.era-header{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+.era-card.open .era-header{border-bottom-color:var(--border)}
+.era-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.2rem;color:var(--gold2);
+  width:28px;text-align:center;font-weight:700;
+}
+.era-title{flex:1;font-size:1rem;font-weight:600;font-family:'Cinzel',serif}
+.era-badge{
+  font-size:.6rem;padding:2px 8px;border-radius:2px;
+  letter-spacing:1px;font-family:'JetBrains Mono',monospace;
+}
+.era-badge.orig{background:var(--mc-dirt);color:#fff}
+.era-badge.new{background:var(--green);color:#fff}
+.era-badge.hard{background:var(--red);color:#fff}
+.era-toggle{color:var(--text3);font-size:.8rem;transition:transform .2s}
+.era-card.open .era-toggle{transform:rotate(180deg)}
+.era-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease;
+  padding:0 16px;
+}
+.era-card.open .era-body{max-height:600px;padding:12px 16px}
+.era-mats{
+  font-size:.82rem;color:var(--text2);margin-bottom:8px;
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+.era-mat-tag{
+  background:var(--bg3);border:1px solid var(--border2);
+  padding:2px 8px;border-radius:2px;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+}
+.era-unlocks{font-size:.82rem;margin-top:8px}
+.era-unlocks li{margin-bottom:4px}
+.era-unlocks li::marker{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════════
+   DISEASE CARDS
+═══════════════════════════════════════════════ */
+.disease-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+@media(max-width:700px){.disease-grid{grid-template-columns:1fr}}
+.disease-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-left:3px solid var(--red2);border-radius:3px;
+  padding:14px 16px;cursor:pointer;transition:all .15s;
+  position:relative;overflow:hidden;
+}
+.disease-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0 0,rgba(180,40,40,.04),transparent 60%);
+}
+.disease-card:hover{border-left-color:var(--red2);box-shadow:0 0 12px rgba(200,40,40,.1)}
+.disease-card.curable{border-left-color:var(--green2)}
+.disease-name{font-size:.95rem;font-weight:600;color:var(--red2);margin-bottom:4px}
+.disease-card.curable .disease-name{color:var(--green2)}
+.disease-desc{font-size:.8rem;color:var(--text2);margin-bottom:8px}
+.disease-meta{display:flex;gap:8px;flex-wrap:wrap}
+.disease-tag{
+  font-size:.65rem;padding:2px 7px;border-radius:2px;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.5px;
+  background:var(--bg3);border:1px solid var(--border2);color:var(--text3);
+}
+.disease-cure{
+  margin-top:8px;padding-top:8px;border-top:1px solid var(--border2);
+  font-size:.78rem;color:var(--green2);display:flex;align-items:center;gap:6px;
+}
+
+/* ═══════════════════════════════════════════════
+   STATS BARS
+═══════════════════════════════════════════════ */
+.stat-row{display:flex;align-items:center;gap:12px;margin:8px 0}
+.stat-label{width:160px;font-size:.82rem;color:var(--text2)}
+.stat-track{
+  flex:1;height:10px;background:var(--bg3);
+  border:1px solid var(--border2);border-radius:2px;overflow:hidden;
+}
+.stat-fill{height:100%;border-radius:2px;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+.stat-fill.mite-orig{background:linear-gradient(90deg,#804020,#d06030)}
+.stat-fill.mite-fr{background:linear-gradient(90deg,#500010,#a02020)}
+.stat-fill.vanilla{background:linear-gradient(90deg,#206040,#40a060)}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text3);width:60px}
+
+/* ═══════════════════════════════════════════════
+   ENTITY CARDS
+═══════════════════════════════════════════════ */
+.entity-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+@media(max-width:800px){.entity-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.entity-grid{grid-template-columns:1fr}}
+.entity-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:3px;padding:16px;text-align:center;
+  transition:all .2s;cursor:default;
+}
+.entity-card:hover{border-color:var(--red2);transform:translateY(-2px);
+  box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.entity-emoji{font-size:2.4rem;display:block;margin-bottom:8px;
+  filter:drop-shadow(0 0 8px rgba(200,151,58,.3))}
+.entity-name{font-size:.9rem;font-weight:600;color:var(--gold2);margin-bottom:4px}
+.entity-biome{font-size:.72rem;color:var(--text3);margin-bottom:8px;
+  font-family:'JetBrains Mono',monospace}
+.entity-stat{
+  display:flex;justify-content:space-between;
+  font-size:.72rem;padding:3px 0;border-bottom:1px solid var(--border2);
+}
+.entity-stat:last-child{border-bottom:none}
+.entity-stat-label{color:var(--text3)}
+.entity-stat-val{color:var(--text);font-family:'JetBrains Mono',monospace}
+
+/* ═══════════════════════════════════════════════
+   TEMPERATURE GAUGE
+═══════════════════════════════════════════════ */
+.temp-scale{
+  position:relative;height:32px;margin:16px 0;
+  background:linear-gradient(90deg,#0050ff 0%,#00a0ff 15%,#00dd88 30%,#88dd00 45%,#ffcc00 60%,#ff6600 75%,#ff2200 90%,#aa0000 100%);
+  border-radius:4px;border:1px solid var(--border);overflow:visible;
+}
+.temp-marker{
+  position:absolute;top:-8px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.temp-marker-line{width:2px;height:14px;background:#fff;opacity:.7}
+.temp-marker-label{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  color:var(--text2);white-space:nowrap;margin-top:2px;
+}
+.temp-zones{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.temp-zone{
+  font-size:.72rem;padding:3px 10px;border-radius:2px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ═══════════════════════════════════════════════
+   HEARTS DISPLAY
+═══════════════════════════════════════════════ */
+.hearts-row{display:flex;align-items:center;gap:6px;margin:6px 0;flex-wrap:wrap}
+.heart{font-size:1rem}
+.heart.empty{opacity:.2}
+.hearts-label{font-size:.8rem;color:var(--text2);margin-left:8px}
+
+/* ═══════════════════════════════════════════════
+   CONDITION TIERS
+═══════════════════════════════════════════════ */
+.condition-tiers{display:flex;flex-direction:column;gap:4px;margin:12px 0}
+.ctier{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 14px;border-radius:3px;
+  background:var(--panel);border:1px solid var(--border2);
+}
+.ctier-bar{
+  width:80px;height:8px;border-radius:2px;flex-shrink:0;
+}
+.ctier-range{font-family:'JetBrains Mono',monospace;font-size:.75rem;width:60px}
+.ctier-name{font-size:.82rem;font-weight:600;width:100px}
+.ctier-effect{font-size:.78rem;color:var(--text2);flex:1}
+
+/* ═══════════════════════════════════════════════
+   SLEEP STAGES
+═══════════════════════════════════════════════ */
+.sleep-stages{display:flex;flex-direction:column;gap:3px;margin:12px 0}
+.stage{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 14px;border-left:3px solid;
+  background:var(--panel);
+}
+.stage-icon{font-size:1.1rem;width:24px;text-align:center}
+.stage-time{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text3);width:100px}
+.stage-name{font-size:.85rem;font-weight:600;width:90px}
+.stage-effect{font-size:.78rem;color:var(--text2);flex:1}
+
+/* ═══════════════════════════════════════════════
+   SEASON CARDS
+═══════════════════════════════════════════════ */
+.season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+@media(max-width:600px){.season-grid{grid-template-columns:1fr 1fr}}
+.season-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:3px;padding:14px 12px;text-align:center;
+}
+.season-icon{font-size:2rem;display:block;margin-bottom:8px}
+.season-name{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.season-effect{font-size:.72rem;color:var(--text2)}
+.season-effect li{margin-bottom:3px;text-align:left;list-style:none;padding-left:0}
+.season-effect li::before{content:'▸ ';color:var(--gold);font-size:.7rem}
+
+/* ═══════════════════════════════════════════════
+   CRAFTING SECTION LAYOUT
+═══════════════════════════════════════════════ */
+.crafts-group{margin:20px 0}
+.crafts-group h3{margin-top:0}
+.crafts-row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+
+/* ═══════════════════════════════════════════════
+   ITEM TOOLTIP
+═══════════════════════════════════════════════ */
+.craft-cell[title]:hover::after{
+  content:attr(title);
+  position:absolute;bottom:calc(100% + 4px);left:50%;
+  transform:translateX(-50%);
+  background:#1a1810;border:1px solid var(--gold);
+  padding:3px 8px;border-radius:2px;
+  font-size:.65rem;font-family:'JetBrains Mono',monospace;
+  color:var(--gold2);white-space:nowrap;z-index:100;
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════════
+   COMMAND REFERENCE
+═══════════════════════════════════════════════ */
+.cmd-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.82rem}
+.cmd-table th{
+  background:var(--bg3);color:var(--gold);
+  padding:8px 12px;text-align:left;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;letter-spacing:1px;
+  border-bottom:1px solid var(--border);
+}
+.cmd-table td{padding:7px 12px;border-bottom:1px solid var(--border2)}
+.cmd-table tr:last-child td{border-bottom:none}
+.cmd-table tr:hover td{background:rgba(255,255,255,.02)}
+.cmd{font-family:'JetBrains Mono',monospace;color:var(--gold2);font-size:.8rem}
+.cmd-desc{color:var(--text2)}
+
+/* ═══════════════════════════════════════════════
+   GENERAL UTILITIES
+═══════════════════════════════════════════════ */
+.highlight{
+  background:linear-gradient(135deg,#1c1408,#110d00);
+  border:1px solid var(--gold);padding:16px 20px;
+  margin:16px 0;border-radius:3px;position:relative;
+}
+.highlight[data-label]::before{
+  content:attr(data-label);
+  position:absolute;top:-9px;left:12px;
+  background:var(--bg);padding:0 8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
+}
+.warn{
+  background:rgba(140,30,30,.08);border:1px solid var(--red);
+  padding:12px 16px;margin:12px 0;border-radius:3px;
+  font-size:.85rem;color:var(--text2);
+}
+.warn::before{content:'⚠ ';color:var(--red2)}
+.tip{
+  background:rgba(40,100,60,.08);border:1px solid var(--green);
+  padding:12px 16px;margin:12px 0;border-radius:3px;
+  font-size:.85rem;color:var(--text2);
+}
+.tip::before{content:'💡 '}
+ul.styled{padding-left:1.4em;margin-bottom:12px}
+ul.styled li{margin-bottom:5px}
+ul.styled li::marker{color:var(--gold)}
+table.info{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+table.info th{background:var(--bg3);color:var(--gold);padding:8px 12px;
+  text-align:left;font-size:.73rem;letter-spacing:1px;border-bottom:1px solid var(--border)}
+table.info td{padding:7px 12px;border-bottom:1px solid var(--border2)}
+table.info tr:last-child td{border-bottom:none}
+table.info tr:hover td{background:rgba(255,255,255,.02)}
+table.info td:first-child{
+  font-family:'JetBrains Mono',monospace;
+  color:var(--gold2);font-size:.8rem;
+}
+.divider{text-align:center;margin:48px 0;color:var(--border);
+  font-size:1.2rem;letter-spacing:10px}
+footer{text-align:center;padding:40px;border-top:1px solid var(--border);
+  color:var(--text3);font-size:.8rem;font-style:italic;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- ══════════════════════════════
+     SIDEBAR
+══════════════════════════════ -->
+<aside>
+  <div class="aside-title">💀 MITE-FR</div>
+
+  <div class="aside-section">
+    <div class="aside-section-label">Présentation</div>
+    <a href="#intro" class="active"><span class="ico">⚔</span>Introduction</a>
+    <a href="#comparaison"><span class="ico">⚖</span>vs MITE Original</a>
+    <a href="#stats-joueur"><span class="ico">❤</span>Stats du Joueur</a>
+  </div>
+
+  <div class="aside-section">
+    <div class="aside-section-label">Systèmes</div>
+    <a href="#eres"><span class="ico">🏛</span>Ères &amp; Progression</a>
+    <a href="#crafting"><span class="ico">🔨</span>Recettes de Craft</a>
+    <a href="#survie"><span class="ico">🍖</span>Survie &amp; Besoins</a>
+    <a href="#maladies"><span class="ico">☠</span>Maladies</a>
+    <a href="#temperature"><span class="ico">🌡</span>Température</a>
+    <a href="#sommeil"><span class="ico">😴</span>Sommeil</a>
+    <a href="#saisons"><span class="ico">🌿</span>Saisons</a>
+  </div>
+
+  <div class="aside-section">
+    <div class="aside-section-label">Combat &amp; Monde</div>
+    <a href="#mobs"><span class="ico">👾</span>Créatures</a>
+    <a href="#monde"><span class="ico">🌍</span>Génération du Monde</a>
+    <a href="#mort"><span class="ico">💀</span>Legs de Fer (Mort)</a>
+  </div>
+
+  <div class="aside-section">
+    <div class="aside-section-label">Référence</div>
+    <a href="#commandes"><span class="ico">⌨</span>Commandes Admin</a>
+    <a href="#gamerules"><span class="ico">⚙</span>Règles de Jeu</a>
+    <a href="#glossaire"><span class="ico">📖</span>Glossaire FR</a>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════
+     MAIN CONTENT
+══════════════════════════════ -->
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-skull">💀</span>
+  <h1>MITE-FR</h1>
+  <p class="hero-sub">Minecraft Is Too Easy — Version Française Renforcée</p>
+  <p class="hero-quote">"La survie n'est pas un droit. C'est un privilège que tu n'as pas encore mérité."</p>
+  <div class="hero-badges">
+    <span class="hbadge mc">Minecraft 1.20.4</span>
+    <span class="hbadge fabric">Fabric Loader</span>
+    <span class="hbadge hard">☠ Extrême</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     INTRO
+══════════════════════════════ -->
+<section class="section" id="intro">
+  <h2 class="section-title"><span class="ico">⚔</span> Introduction</h2>
+  <p>MITE-FR est un mod Fabric pour Minecraft 1.20.4 inspiré du mod chinois <em>Minecraft Is Too Easy</em> (Avernite, 2014). Il réinvente entièrement la survie avec 8 systèmes imbriqués, 6 ères de progression et une localisation française soignée.</p>
+  <div class="highlight" data-label="Principe fondateur">
+    <strong>Chaque action a un coût. Chaque erreur a une conséquence.</strong><br>
+    Le jeu ne te tient pas la main — la régénération est désactivée, les outils sont requis pour tout, et le monde veut activement ta mort.
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     COMPARAISON
+══════════════════════════════ -->
+<section class="section" id="comparaison">
+  <h2 class="section-title"><span class="ico">⚖</span> vs MITE Original</h2>
+
+  <div class="stat-row">
+    <span class="stat-label">Vanilla</span>
+    <div class="stat-track"><div class="stat-fill vanilla" style="width:30%"></div></div>
+    <span class="stat-val">Normal</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">MITE 1.6.4</span>
+    <div class="stat-track"><div class="stat-fill mite-orig" style="width:65%"></div></div>
+    <span class="stat-val">Brutal</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">MITE-FR</span>
+    <div class="stat-track"><div class="stat-fill mite-fr" style="width:94%"></div></div>
+    <span class="stat-val">Cauchemar</span>
+  </div>
+
+  <table class="info" style="margin-top:20px">
+    <thead><tr><th>Aspect</th><th>MITE 1.6.4</th><th>MITE-FR 1.20.4</th></tr></thead>
+    <tbody>
+      <tr><td>Santé départ</td><td>3 cœurs</td><td>2 cœurs</td></tr>
+      <tr><td>Faim départ</td><td>3 icônes</td><td>2 icônes</td></tr>
+      <tr><td>Régénération</td><td>Désactivée</td><td>Désactivée</td></tr>
+      <tr><td>Villages</td><td>Aucun</td><td>Aucun (ruines seulement)</td></tr>
+      <tr><td>Ères</td><td>4 (Silex→Mythique)</td><td>6 (Silex→Néant)</td></tr>
+      <tr><td>Maladies</td><td>Non</td><td>7 maladies</td></tr>
+      <tr><td>Eau potable</td><td>Non</td><td>Oui — eau brute = poison</td></tr>
+      <tr><td>Température</td><td>Non</td><td>Oui — hypothermie/hyperthermie</td></tr>
+      <tr><td>Sommeil</td><td>Non</td><td>Oui — privation = délire</td></tr>
+      <tr><td>Saisons</td><td>Non</td><td>4 saisons, cycle de 20 jours</td></tr>
+      <tr><td>Nourriture</td><td>Crus = poison 50%</td><td>Crus + péremption (3 jours)</td></tr>
+      <tr><td>Mort</td><td>Hardcore ou standard</td><td>Legs de Fer (voir §Mort)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════
+     STATS JOUEUR
+══════════════════════════════ -->
+<section class="section" id="stats-joueur">
+  <h2 class="section-title"><span class="ico">❤</span> Stats du Joueur</h2>
+
+  <h3>Santé — Progression par niveaux</h3>
+  <table class="info">
+    <thead><tr><th>Niveau XP</th><th>Cœurs max</th><th>Santé (HP)</th></tr></thead>
+    <tbody>
+      <tr><td>0–9</td><td><span class="hearts-row"><span class="heart">❤</span><span class="heart">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span></span></td><td>4 HP</td></tr>
+      <tr><td>10–19</td><td><span class="hearts-row"><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span></span></td><td>6 HP</td></tr>
+      <tr><td>20–29</td><td><span class="hearts-row"><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart empty">❤</span><span class="heart empty">❤</span></span></td><td>8 HP</td></tr>
+      <tr><td>30–39</td><td><span class="hearts-row"><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart empty">❤</span></span></td><td>10 HP</td></tr>
+      <tr><td>40+</td><td><span class="hearts-row"><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span><span class="heart">❤</span></span></td><td>12 HP (max)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn">La dette XP (après mort) réduit temporairement de 1 cœur supplémentaire.</div>
+
+  <h3>Jauge de Condition (0–100)</h3>
+  <div class="condition-tiers">
+    <div class="ctier">
+      <div class="ctier-bar" style="background:linear-gradient(90deg,#2a8040,#5ac060)"></div>
+      <span class="ctier-range">75–100</span>
+      <span class="ctier-name" style="color:#5ac060">Pleine forme</span>
+      <span class="ctier-effect">Aucun malus. Récupération active si bien nourri et reposé.</span>
+    </div>
+    <div class="ctier">
+      <div class="ctier-bar" style="background:linear-gradient(90deg,#807020,#c0b040)"></div>
+      <span class="ctier-range">50–74</span>
+      <span class="ctier-name" style="color:#c0b040">Fatigué</span>
+      <span class="ctier-effect">Vitesse –15%. Mining Fatigue I passif.</span>
+    </div>
+    <div class="ctier">
+      <div class="ctier-bar" style="background:linear-gradient(90deg,#804020,#c06030)"></div>
+      <span class="ctier-range">25–49</span>
+      <span class="ctier-name" style="color:#c06030">Épuisé</span>
+      <span class="ctier-effect">Impossible de courir. Mining Fatigue II. Tremblements (FOV réduit).</span>
+    </div>
+    <div class="ctier">
+      <div class="ctier-bar" style="background:linear-gradient(90deg,#601010,#a02020)"></div>
+      <span class="ctier-range">0–24</span>
+      <span class="ctier-name" style="color:#a02020">Critique</span>
+      <span class="ctier-effect">Marche uniquement. Mining Fatigue III. Weakness II. Cécité partielle.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     ÈRES
+══════════════════════════════ -->
+<section class="section" id="eres">
+  <h2 class="section-title"><span class="ico">🏛</span> Ères &amp; Progression</h2>
+  <p>La progression est linéaire et irréversible. Chaque ère se débloque via un <strong>Rite de Passage</strong> — un craft unique qui consomme des ressources rares.</p>
+
+  <div class="era-tree" id="eraTree">
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--mc-stone)"></div><div class="era-connector-line"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">I</span>
+          <span class="era-title">Âge du Silex</span>
+          <span class="era-badge orig">MITE Original</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">🪨 Silex</span>
+            <span class="era-mat-tag">🦴 Os</span>
+            <span class="era-mat-tag">🌿 Fibres végétales</span>
+            <span class="era-mat-tag">🪵 Bois brut</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Couteau en Silex — couper fibres, dépouiller</li>
+            <li>Hachette en Silex — couper les arbres (requis)</li>
+            <li>Pic en Os — miner la pierre basique</li>
+            <li>Gourde Vide — contenir l'eau</li>
+            <li>Établi de Survie — toutes recettes silex</li>
+          </ul>
+          <div class="tip">Pour passer à l'Âge du Cuivre : crafter un Foyer de Forge (argile cuite ×8).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--mc-copper)"></div><div class="era-connector-line"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">II</span>
+          <span class="era-title">Âge du Cuivre</span>
+          <span class="era-badge orig">MITE Original</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">🟤 Cuivre brut</span>
+            <span class="era-mat-tag">🧱 Argile cuite</span>
+            <span class="era-mat-tag">🧵 Corde tressée</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Foyer de Forge — station de craft ère Cuivre</li>
+            <li>Outils en cuivre (hache, pic, pelle)</li>
+            <li>Gourde Filtrée — eau propre sans intoxication</li>
+            <li>Masque Filtrant — protection gaz toxiques (y&lt;20)</li>
+            <li>Gants de Minage — protection Rouille des Mines</li>
+          </ul>
+          <div class="tip">Pour passer au Bronze : crafter une Forge du Bronzier (bronze ×8).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--mc-bronze)"></div><div class="era-connector-line"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">III</span>
+          <span class="era-title">Âge du Bronze</span>
+          <span class="era-badge orig">MITE Original</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">🟡 Lingot de Bronze</span>
+            <span class="era-mat-tag">🔥 Charbon de Bois</span>
+            <span class="era-mat-tag">🪖 Plaques de Bronze</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Forge du Bronzier — station de craft ère Bronze</li>
+            <li>Outils et armures en bronze</li>
+            <li>Cataplasme d'herbes (remède Rouille + Fièvre)</li>
+            <li>Remède anti-Gangrène</li>
+            <li>Extrait de Citrus (remède Scorbut)</li>
+          </ul>
+          <div class="tip">Pour passer au Fer : crafter une Enclume de Maître (9 blocs de fer).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--mc-iron)"></div><div class="era-connector-line"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">IV</span>
+          <span class="era-title">Âge du Fer</span>
+          <span class="era-badge orig">MITE Original</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">⚙ Fer Forgé</span>
+            <span class="era-mat-tag">🔩 Acier Primitif</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Enclume de Maître — permet l'enchantement</li>
+            <li>Accès aux minerais Diamant et Ancient Debris</li>
+            <li>Outils et armures en fer et acier</li>
+            <li>Déblocage de l'Autel des Runes (enchantements)</li>
+          </ul>
+          <div class="tip">Pour passer à l'Acier : crafter la Forge d'Acier (lingots de diamant + fer ×12).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--mc-diamond)"></div><div class="era-connector-line"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">V</span>
+          <span class="era-title">Âge de l'Acier</span>
+          <span class="era-badge hard">RENFORCÉ</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">💎 Acier Trempé</span>
+            <span class="era-mat-tag">🔮 Verre Soufflé</span>
+            <span class="era-mat-tag">✨ Mithril Brut</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Outils en acier trempé (durabilité ×2.5 vs fer)</li>
+            <li>Armures à enchantements supérieurs</li>
+            <li>Accès aux recettes du Nether renforcé</li>
+          </ul>
+          <div class="tip">Pour passer au Néant : trouver des Fragments du Néant dans les forteresses du End.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-node">
+      <div class="era-connector"><div class="era-connector-dot" style="background:var(--purple2)"></div></div>
+      <div class="era-card" onclick="toggleEra(this)">
+        <div class="era-header">
+          <span class="era-num">VI</span>
+          <span class="era-title">Âge du Néant</span>
+          <span class="era-badge new">NOUVEAU</span>
+          <span class="era-toggle">▾</span>
+        </div>
+        <div class="era-body">
+          <div class="era-mats">
+            <span class="era-mat-tag">🌑 Fragment du Néant</span>
+            <span class="era-mat-tag">💜 Cristaux Ender Fondus</span>
+            <span class="era-mat-tag">⬛ Alliage d'Obsidienne</span>
+          </div>
+          <ul class="era-unlocks">
+            <li>Atelier du Néant — station finale</li>
+            <li>Équipements transcendants (résistance ×4 vs vanilla)</li>
+            <li>Accès au Boss Final (Ender Dragon reconfiguré)</li>
+          </ul>
+          <div class="warn">Atteindre l'Âge du Néant prend plusieurs dizaines d'heures de jeu. Bonne chance.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CRAFTING
+══════════════════════════════ -->
+<section class="section" id="crafting">
+  <h2 class="section-title"><span class="ico">🔨</span> Recettes de Craft</h2>
+
+  <div class="crafts-group">
+    <h3>🪨 Outils de l'Âge du Silex</h3>
+    <div class="crafts-row">
+
+      <!-- Couteau en Silex -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Silex">🪨</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Silex">🪨</div>
+            <div class="craft-cell" title="Os">🦴</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Couteau en Silex">🔪<span class="qty">1</span></div>
+            <div class="craft-name">Couteau en Silex</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hachette en Silex -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Silex">🪨</div>
+            <div class="craft-cell" title="Silex">🪨</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Silex">🪨</div>
+            <div class="craft-cell" title="Os">🦴</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Hachette en Silex">🪓<span class="qty">1</span></div>
+            <div class="craft-name">Hachette en Silex</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pic en Os -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Os">🦴</div>
+            <div class="craft-cell" title="Os">🦴</div>
+            <div class="craft-cell" title="Os">🦴</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Pic en Os">⛏<span class="qty">1</span></div>
+            <div class="craft-name">Pic en Os</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="crafts-group">
+    <h3>💧 Eau &amp; Survie</h3>
+    <div class="crafts-row">
+
+      <!-- Gourde Vide -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Gourde Vide">🫙<span class="qty">1</span></div>
+            <div class="craft-name">Gourde Vide</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtre au Charbon -->
+      <div>
+        <div class="craft-wrapper shapeless">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Charbon">⚫</div>
+            <div class="craft-cell" title="Charbon">⚫</div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Filtre au Charbon">🔘<span class="qty">2</span></div>
+            <div class="craft-name">Filtre au Charbon</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gourde Filtrée -->
+      <div>
+        <div class="craft-wrapper shapeless">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Gourde Vide">🫙</div>
+            <div class="craft-cell" title="Filtre au Charbon">🔘</div>
+            <div class="craft-cell" title="Seau d'eau">🪣</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Gourde Filtrée">💧<span class="qty">1</span></div>
+            <div class="craft-name">Gourde Filtrée</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="crafts-group">
+    <h3>🛡 Équipements Spéciaux</h3>
+    <div class="crafts-row">
+
+      <!-- Masque Filtrant -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Filtre au Charbon">🔘</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Masque Filtrant">😷<span class="qty">1</span></div>
+            <div class="craft-name">Masque Filtrant</div>
+          </div>
+        </div>
+        <div class="tip" style="max-width:220px;font-size:.72rem">Protège des gaz toxiques sous Y=20</div>
+      </div>
+
+      <!-- Gants de Minage -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Gants de Minage">🧤<span class="qty">1</span></div>
+            <div class="craft-name">Gants de Minage</div>
+          </div>
+        </div>
+        <div class="tip" style="max-width:220px;font-size:.72rem">Évite la Rouille des Mines</div>
+      </div>
+
+      <!-- Kit de Campement -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+            <div class="craft-cell" title="Cuir">🟫</div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Kit de Campement">⛺<span class="qty">1</span></div>
+            <div class="craft-name">Kit de Campement</div>
+          </div>
+        </div>
+        <div class="tip" style="max-width:220px;font-size:.72rem">Pose un point de respawn</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="crafts-group">
+    <h3>💊 Remèdes</h3>
+    <div class="crafts-row">
+
+      <!-- Cataplasme -->
+      <div>
+        <div class="craft-wrapper shapeless">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell" title="Fibres végétales">🌿</div>
+            <div class="craft-cell"></div><div class="craft-cell"></div><div class="craft-cell"></div>
+            <div class="craft-cell"></div><div class="craft-cell"></div><div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Cataplasme d'Herbes">🩹<span class="qty">2</span></div>
+            <div class="craft-name">Cataplasme</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:4px">Soigne : Rouille + Fièvre</div>
+      </div>
+
+      <!-- Anti-Gangrène -->
+      <div>
+        <div class="craft-wrapper shapeless">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell" title="Sel">🧂</div>
+            <div class="craft-cell"></div><div class="craft-cell"></div>
+            <div class="craft-cell"></div><div class="craft-cell"></div><div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Remède Anti-Gangrène">💉<span class="qty">1</span></div>
+            <div class="craft-name">Anti-Gangrène</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:4px">Soigne : Gangrène</div>
+      </div>
+
+      <!-- Extrait Citrus -->
+      <div>
+        <div class="craft-wrapper shapeless">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Baies sucrées">🍓</div>
+            <div class="craft-cell" title="Baies sucrées">🍓</div>
+            <div class="craft-cell" title="Herbe médicinale">🌱</div>
+            <div class="craft-cell"></div><div class="craft-cell"></div><div class="craft-cell"></div>
+            <div class="craft-cell"></div><div class="craft-cell"></div><div class="craft-cell"></div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Extrait de Citrus">🍋<span class="qty">2</span></div>
+            <div class="craft-name">Extrait Citrus</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:4px">Soigne : Scorbut</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="crafts-group">
+    <h3>🏗 Stations d'Artisanat</h3>
+    <div class="crafts-row">
+
+      <!-- Foyer de Forge -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+            <div class="craft-cell" title="Brique">🧱</div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Foyer de Forge">🔥<span class="qty">1</span></div>
+            <div class="craft-name">Foyer de Forge</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--gold);margin-top:4px">Ère II — Cuivre</div>
+      </div>
+
+      <!-- Forge du Bronzier -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell"></div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+            <div class="craft-cell" title="Lingot de Bronze">🟡</div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Forge du Bronzier">⚒<span class="qty">1</span></div>
+            <div class="craft-name">Forge Bronzier</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--gold);margin-top:4px">Ère III — Bronze</div>
+      </div>
+
+      <!-- Enclume de Maître -->
+      <div>
+        <div class="craft-wrapper">
+          <div class="craft-grid">
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+            <div class="craft-cell" title="Bloc de Fer">⬛</div>
+          </div>
+          <div class="craft-arrow">▶</div>
+          <div class="craft-result">
+            <div class="craft-result-cell" title="Enclume de Maître">🔨<span class="qty">1</span></div>
+            <div class="craft-name">Enclume Maître</div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--gold);margin-top:4px">Ère IV — Fer</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SURVIE
+══════════════════════════════ -->
+<section class="section" id="survie">
+  <h2 class="section-title"><span class="ico">🍖</span> Survie &amp; Besoins</h2>
+
+  <h3>💧 Système de Soif (0–20)</h3>
+  <table class="info">
+    <thead><tr><th>Soif</th><th>État</th><th>Effet</th></tr></thead>
+    <tbody>
+      <tr><td>14–20</td><td>Hydraté</td><td>Aucun malus</td></tr>
+      <tr><td>7–13</td><td>Assoiffé</td><td>Message d'avertissement</td></tr>
+      <tr><td>1–6</td><td>Déshydraté</td><td>Slowness I, message urgent</td></tr>
+      <tr><td>0</td><td>Critique</td><td>0.5 dégâts/s, Condition −3/s, Slowness II</td></tr>
+    </tbody>
+  </table>
+  <div class="tip">La pluie collectée est sûre. L'eau de seau = 80% de chance d'intoxication.</div>
+
+  <h3>🍖 Nourriture</h3>
+  <ul class="styled">
+    <li><strong>Aliments crus</strong> — 50% de chance d'empoisonnement</li>
+    <li><strong>Péremption</strong> — Les aliments pourrissent après 72 000 ticks (3 jours de jeu)</li>
+    <li><strong>Scorbut</strong> — Sans légumes/fruits pendant 120 000 ticks → Scorbut automatique</li>
+    <li><strong>Aliment pourri consommé</strong> — Poison II + Nausée garantis</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════
+     MALADIES
+══════════════════════════════ -->
+<section class="section" id="maladies">
+  <h2 class="section-title"><span class="ico">☠</span> Maladies</h2>
+
+  <div class="disease-grid">
+
+    <div class="disease-card">
+      <div class="disease-name">☠ Rouille des Mines</div>
+      <div class="disease-desc">Contractée en minant de la pierre ou des minerais sans gants. Réduit la vitesse de minage.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Mining Fatigue II</span>
+        <span class="disease-tag">3 jours de jeu</span>
+        <span class="disease-tag">0.3% par bloc</span>
+      </div>
+      <div class="disease-cure">🩹 Remède : Cataplasme d'Herbes</div>
+    </div>
+
+    <div class="disease-card">
+      <div class="disease-name">☠ Fièvre des Marais</div>
+      <div class="disease-desc">Zones humides/marécageuses la nuit sans torche. Nausées cycliques toutes les 10s.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Nausée + Slowness</span>
+        <span class="disease-tag">2 jours de jeu</span>
+        <span class="disease-tag">5% / 10s</span>
+      </div>
+      <div class="disease-cure">🩹 Remède : Cataplasme d'Herbes</div>
+    </div>
+
+    <div class="disease-card" style="border-left-color:#ff2020">
+      <div class="disease-name" style="color:#ff4040">☠ Gangrène</div>
+      <div class="disease-desc">Blessure non soignée. Inflige des dégâts croissants toutes les 30s. Fatale si ignorée.</div>
+      <div class="disease-meta">
+        <span class="disease-tag" style="color:#ff4040;border-color:#ff2020">URGENCE</span>
+        <span class="disease-tag">2 HP / 30s</span>
+        <span class="disease-tag">Permanent</span>
+      </div>
+      <div class="disease-cure">💉 Remède : Anti-Gangrène (×3 herbes + sel)</div>
+    </div>
+
+    <div class="disease-card">
+      <div class="disease-name">☠ Scorbut</div>
+      <div class="disease-desc">5 jours sans fruits/légumes. Fragilise les os : chutes de 2+ blocs = dégâts ×2.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Weakness I passif</span>
+        <span class="disease-tag">120 000 ticks</span>
+        <span class="disease-tag">Permanent</span>
+      </div>
+      <div class="disease-cure">🍋 Remède : Extrait de Citrus ou légumes frais</div>
+    </div>
+
+    <div class="disease-card curable">
+      <div class="disease-name">💧 Intoxication Hydrique</div>
+      <div class="disease-desc">Eau brute consommée. Empoisonnement court mais intense.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Poison + Nausée</span>
+        <span class="disease-tag">1 min</span>
+        <span class="disease-tag">80% à chaque consommation</span>
+      </div>
+      <div class="disease-cure">⏰ Guérison naturelle après 1 min</div>
+    </div>
+
+    <div class="disease-card curable">
+      <div class="disease-name">❄ Hypothermie</div>
+      <div class="disease-desc">Température corporelle trop basse. Ralentissement sévère, Condition qui chute.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Slowness III</span>
+        <span class="disease-tag">Permanent tant que froid</span>
+      </div>
+      <div class="disease-cure">🔥 Guérison : s'approcher d'une source de chaleur</div>
+    </div>
+
+    <div class="disease-card curable">
+      <div class="disease-name">🔥 Hyperthermie</div>
+      <div class="disease-desc">Température trop haute. Double la consommation de faim.</div>
+      <div class="disease-meta">
+        <span class="disease-tag">Faim ×2</span>
+        <span class="disease-tag">Permanent tant que chaud</span>
+      </div>
+      <div class="disease-cure">❄ Guérison : s'éloigner des sources de chaleur</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     TEMPÉRATURE
+══════════════════════════════ -->
+<section class="section" id="temperature">
+  <h2 class="section-title"><span class="ico">🌡</span> Température Corporelle</h2>
+
+  <div class="temp-scale">
+    <div class="temp-marker" style="left:5%"><div class="temp-marker-line"></div><div class="temp-marker-label">−20°C<br>Gel</div></div>
+    <div class="temp-marker" style="left:22%"><div class="temp-marker-line"></div><div class="temp-marker-label">10°C<br>Froid</div></div>
+    <div class="temp-marker" style="left:42%"><div class="temp-marker-line"></div><div class="temp-marker-label">18°C<br>Normal↓</div></div>
+    <div class="temp-marker" style="left:58%"><div class="temp-marker-line"></div><div class="temp-marker-label">28°C<br>Normal↑</div></div>
+    <div class="temp-marker" style="left:75%"><div class="temp-marker-line"></div><div class="temp-marker-label">38°C<br>Chaud</div></div>
+    <div class="temp-marker" style="left:90%"><div class="temp-marker-line"></div><div class="temp-marker-label">50°C<br>Surchauffe</div></div>
+  </div>
+
+  <div class="temp-zones" style="margin-top:30px">
+    <span class="temp-zone" style="background:#0020a0;color:#88aaff">≤ −20°C : Dégâts de gel + Condition −3/s</span>
+    <span class="temp-zone" style="background:#004080;color:#88ccff">≤ 10°C : Slowness + Hypothermie</span>
+    <span class="temp-zone" style="background:#1a3020;color:#88cc88">18–28°C : Zone normale</span>
+    <span class="temp-zone" style="background:#603000;color:#ffaa44">≥ 38°C : Faim ×2 + Hyperthermie</span>
+    <span class="temp-zone" style="background:#800000;color:#ff6644">≥ 50°C : Dégâts de chaleur + Condition −2/s</span>
+  </div>
+
+  <h3>Sources de chaleur / froid</h3>
+  <table class="info">
+    <thead><tr><th>Source</th><th>Modificateur</th></tr></thead>
+    <tbody>
+      <tr><td>Biome neige (temp &lt; 0.15)</td><td>−8°C</td></tr>
+      <tr><td>Nuit (ticks 13000–23000)</td><td>−5°C</td></tr>
+      <tr><td>Pluie à l'air libre</td><td>−4°C</td></tr>
+      <tr><td>Sous Y=30 (grotte)</td><td>−3°C</td></tr>
+      <tr><td>Proximité feu/lave (4 blocs)</td><td>+15°C</td></tr>
+      <tr><td>Désert (biome temp ≥ 2.0)</td><td>+10°C base</td></tr>
+      <tr><td>Pièce d'armure portée</td><td>+2°C chacune</td></tr>
+      <tr><td>Saison Hiver</td><td>−15°C</td></tr>
+      <tr><td>Saison Été</td><td>+8°C</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════
+     SOMMEIL
+══════════════════════════════ -->
+<section class="section" id="sommeil">
+  <h2 class="section-title"><span class="ico">😴</span> Privation de Sommeil</h2>
+
+  <div class="sleep-stages">
+    <div class="stage" style="border-color:var(--green2)">
+      <span class="stage-icon">😊</span>
+      <span class="stage-time">0 – 16 000 ticks</span>
+      <span class="stage-name" style="color:var(--green2)">Reposé</span>
+      <span class="stage-effect">Aucun malus. Condition récupère normalement.</span>
+    </div>
+    <div class="stage" style="border-color:#c0b040">
+      <span class="stage-icon">😪</span>
+      <span class="stage-time">16 000 – 24 000</span>
+      <span class="stage-name" style="color:#c0b040">Fatigué</span>
+      <span class="stage-effect">Condition −1 toutes les 5s. Légère baisse de précision.</span>
+    </div>
+    <div class="stage" style="border-color:#c06030">
+      <span class="stage-icon">😵</span>
+      <span class="stage-time">24 000 – 32 000</span>
+      <span class="stage-name" style="color:#c06030">Épuisé</span>
+      <span class="stage-effect">Slowness I + Weakness I. Condition −2 toutes les 3s. FOV réduit.</span>
+    </div>
+    <div class="stage" style="border-color:#aa2020">
+      <span class="stage-icon">💀</span>
+      <span class="stage-time">≥ 32 000 ticks</span>
+      <span class="stage-name" style="color:#aa2020">Délire</span>
+      <span class="stage-effect">Slowness II + Weakness II + Nausée. Endormissement spontané aléatoire. Hallucinations visuelles.</span>
+    </div>
+  </div>
+  <div class="tip">Dormir dans un lit remet le compteur à 0 et restaure +20 de Condition.</div>
+  <div class="warn">En Délire, il y a 30% de chance toutes les 400 ticks de s'endormir debout (cécité 4s).</div>
+</section>
+
+<!-- ══════════════════════════════
+     SAISONS
+══════════════════════════════ -->
+<section class="section" id="saisons">
+  <h2 class="section-title"><span class="ico">🌿</span> Saisons</h2>
+  <p>Le cycle complet dure <strong>480 000 ticks</strong> (20 jours de jeu = ~6h40 en temps réel). Chaque saison dure 120 000 ticks (5 jours).</p>
+
+  <div class="season-grid">
+    <div class="season-card" style="border-color:#4a8040">
+      <span class="season-icon">🌱</span>
+      <div class="season-name" style="color:#80c060">Printemps</div>
+      <ul class="season-effect">
+        <li>Cultures ×1.0 (normale)</li>
+        <li>Température +0°C</li>
+        <li>Animaux se reproduisent</li>
+      </ul>
+    </div>
+    <div class="season-card" style="border-color:#808020">
+      <span class="season-icon">☀</span>
+      <div class="season-name" style="color:#e0c040">Été</div>
+      <ul class="season-effect">
+        <li>Cultures ×2.0 (accélérée)</li>
+        <li>Température +8°C</li>
+        <li>Risque hyperthermie ↑</li>
+      </ul>
+    </div>
+    <div class="season-card" style="border-color:#806020">
+      <span class="season-icon">🍂</span>
+      <div class="season-name" style="color:#c08040">Automne</div>
+      <ul class="season-effect">
+        <li>Cultures ×0.7 (ralentie)</li>
+        <li>Température −3°C</li>
+        <li>Dernière chance de stocker</li>
+      </ul>
+    </div>
+    <div class="season-card" style="border-color:#3060a0">
+      <span class="season-icon">❄</span>
+      <div class="season-name" style="color:#80b0e0">Hiver</div>
+      <ul class="season-effect">
+        <li>Cultures ×0 (STOP)</li>
+        <li>Température −15°C</li>
+        <li>Hypothermie nocturne ×2</li>
+        <li>Animaux en hibernation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     MOBS
+══════════════════════════════ -->
+<section class="section" id="mobs">
+  <h2 class="section-title"><span class="ico">👾</span> Créatures</h2>
+
+  <h3>Mobs Vanilla Modifiés</h3>
+  <table class="info">
+    <thead><tr><th>Mob</th><th>Modification</th></tr></thead>
+    <tbody>
+      <tr><td>Tous les mobs</td><td>Portée de suivi ×2 (32 blocs). Pas de despawn.</td></tr>
+      <tr><td>Zombie</td><td>Escalade des murs d'1 bloc (saut automatique si bloqué).</td></tr>
+      <tr><td>Squelette</td><td>Tir 3 ticks plus rapide, précision accrue.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Nouvelles Créatures</h3>
+  <div class="entity-grid">
+
+    <div class="entity-card">
+      <span class="entity-emoji">🐺</span>
+      <div class="entity-name">Charognard des Collines</div>
+      <div class="entity-biome">Plaines / Collines</div>
+      <div class="entity-stat"><span class="entity-stat-label">PV</span><span class="entity-stat-val">16 HP</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Dégâts</span><span class="entity-stat-val">3.5 HP</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Vitesse</span><span class="entity-stat-val">×1.9 vanilla</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Spécial</span><span class="entity-stat-val">Appel de meute</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Drop</span><span class="entity-stat-val">Os, Cuir, Silex</span></div>
+    </div>
+
+    <div class="entity-card">
+      <span class="entity-emoji">👁</span>
+      <div class="entity-name">Ombre Rampante</div>
+      <div class="entity-biome">Grottes (&lt; Y 30)</div>
+      <div class="entity-stat"><span class="entity-stat-label">PV</span><span class="entity-stat-val">10 HP</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Dégâts</span><span class="entity-stat-val">5.0 HP</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Spécial</span><span class="entity-stat-val">Invisible si lumière &lt;4</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Fuit</span><span class="entity-stat-val">Lumière ≥ 7</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Drop</span><span class="entity-stat-val">Fragment du Néant</span></div>
+    </div>
+
+    <div class="entity-card">
+      <span class="entity-emoji">👻</span>
+      <div class="entity-name">Spectre de Brume</div>
+      <div class="entity-biome">Marais (nuit)</div>
+      <div class="entity-stat"><span class="entity-stat-label">PV</span><span class="entity-stat-val">8 HP</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Dégâts</span><span class="entity-stat-val">−10 Condition/contact</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Spécial</span><span class="entity-stat-val">Draine la Condition</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Fuit</span><span class="entity-stat-val">Torches, feu</span></div>
+      <div class="entity-stat"><span class="entity-stat-label">Drop</span><span class="entity-stat-val">Herbe médicinale</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     MONDE
+══════════════════════════════ -->
+<section class="section" id="monde">
+  <h2 class="section-title"><span class="ico">🌍</span> Génération du Monde</h2>
+  <ul class="styled">
+    <li><strong>Aucun village</strong> — supprimé via biome modifier. Seules des ruines piégées existent.</li>
+    <li><strong>Veines de minerai −50%</strong> — Diamant réduit de 8→4 blocs, Fer de 9→5 blocs.</li>
+    <li><strong>Gaz toxiques</strong> — Sous Y=20, Poison + Nausée toutes les 5s sans masque filtrant.</li>
+    <li><strong>Eau corrompue</strong> — Sources d'eau sombre = intoxication garantie.</li>
+  </ul>
+  <div class="warn">Les grottes sont particulièrement dangereuses : gaz toxiques, Ombres Rampantes, et obscurité quasi-totale sous Y=30.</div>
+</section>
+
+<!-- ══════════════════════════════
+     MORT / LEGS DE FER
+══════════════════════════════ -->
+<section class="section" id="mort">
+  <h2 class="section-title"><span class="ico">💀</span> Legs de Fer (Système de Mort)</h2>
+  <div class="highlight" data-label="Legs de Fer">
+    <p>À la mort, la partie n'est <strong>pas perdue</strong>. À la place :</p>
+    <ul class="styled" style="margin-top:10px">
+      <li>Perte de <strong>5 niveaux XP</strong> (dette si &lt; niveau 5)</li>
+      <li>Inventaire dispersé — disparaît en <strong>60 secondes</strong> (au lieu de 5 min)</li>
+      <li>Respawn au <strong>campement établi</strong> (Kit de Campement)</li>
+      <li>Sans campement → respawn au <strong>point de départ</strong>, sans rien</li>
+      <li>Dette XP active → <strong>−1 cœur temporaire</strong> supplémentaire</li>
+    </ul>
+  </div>
+
+  <h3>Remboursement de la dette XP</h3>
+  <p>La dette diminue automatiquement de 1 point toutes les 5 min de jeu. Elle peut aussi être remboursée en accumulant de l'XP normalement.</p>
+
+  <div class="tip">Placez toujours un Kit de Campement avant d'explorer des zones dangereuses. Sans campement, une mort = tout perdre.</div>
+</section>
+
+<!-- ══════════════════════════════
+     COMMANDES
+══════════════════════════════ -->
+<section class="section" id="commandes">
+  <h2 class="section-title"><span class="ico">⌨</span> Commandes Admin</h2>
+  <p style="font-size:.82rem;color:var(--text3)">Requiert le niveau de permission 2 (opérateur).</p>
+
+  <table class="cmd-table">
+    <thead><tr><th>Commande</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td class="cmd">/mitefr status</td><td class="cmd-desc">Affiche l'état complet : ère, condition, soif, température, maladies, campement</td></tr>
+      <tr><td class="cmd">/mitefr era advance</td><td class="cmd-desc">Passe à l'ère suivante</td></tr>
+      <tr><td class="cmd">/mitefr era set &lt;id&gt;</td><td class="cmd-desc">Définit l'ère : silex / cuivre / bronze / fer / acier / neant</td></tr>
+      <tr><td class="cmd">/mitefr disease add &lt;id&gt;</td><td class="cmd-desc">Ajoute une maladie (test / debug)</td></tr>
+      <tr><td class="cmd">/mitefr disease cure</td><td class="cmd-desc">Guérit toutes les maladies actives</td></tr>
+      <tr><td class="cmd">/mitefr season</td><td class="cmd-desc">Affiche la saison actuelle et les jours restants</td></tr>
+      <tr><td class="cmd">/mitefr reset</td><td class="cmd-desc">Remet toutes les données MITE-FR du joueur à zéro</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════
+     GAMERULES
+══════════════════════════════ -->
+<section class="section" id="gamerules">
+  <h2 class="section-title"><span class="ico">⚙</span> Règles de Jeu</h2>
+  <p style="font-size:.82rem;color:var(--text2)">Chaque système peut être activé/désactivé indépendamment via <code>/gamerule</code>.</p>
+
+  <table class="cmd-table">
+    <thead><tr><th>Gamerule</th><th>Défaut</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td class="cmd">mitefr_temperature</td><td>true</td><td class="cmd-desc">Système de température corporelle</td></tr>
+      <tr><td class="cmd">mitefr_thirst</td><td>true</td><td class="cmd-desc">Système de soif</td></tr>
+      <tr><td class="cmd">mitefr_diseases</td><td>true</td><td class="cmd-desc">Système de maladies</td></tr>
+      <tr><td class="cmd">mitefr_sleep</td><td>true</td><td class="cmd-desc">Privation de sommeil</td></tr>
+      <tr><td class="cmd">mitefr_condition</td><td>true</td><td class="cmd-desc">Jauge de condition physique</td></tr>
+      <tr><td class="cmd">mitefr_eras</td><td>true</td><td class="cmd-desc">Système de progression par ères</td></tr>
+      <tr><td class="cmd">mitefr_legs_de_fer</td><td>true</td><td class="cmd-desc">Mort partielle (Legs de Fer)</td></tr>
+      <tr><td class="cmd">mitefr_food_spoilage</td><td>true</td><td class="cmd-desc">Péremption des aliments</td></tr>
+      <tr><td class="cmd">mitefr_starting_hearts</td><td>2</td><td class="cmd-desc">Cœurs de départ (1–10)</td></tr>
+      <tr><td class="cmd">mitefr_starting_hunger</td><td>2</td><td class="cmd-desc">Icônes de faim de départ (1–10)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════
+     GLOSSAIRE
+══════════════════════════════ -->
+<section class="section" id="glossaire">
+  <h2 class="section-title"><span class="ico">📖</span> Glossaire Français</h2>
+
+  <table class="info">
+    <thead><tr><th>Terme Vanilla (EN)</th><th>MITE-FR (FR)</th></tr></thead>
+    <tbody>
+      <tr><td>Enchanting Table</td><td>Autel des Runes</td></tr>
+      <tr><td>Experience / XP</td><td>Maîtrise</td></tr>
+      <tr><td>The Nether</td><td>Les Abysses Ardentes</td></tr>
+      <tr><td>The End</td><td>Le Néant Cristallin</td></tr>
+      <tr><td>Crafting Table</td><td>Établi de Survie</td></tr>
+      <tr><td>Furnace</td><td>Foyer</td></tr>
+      <tr><td>Health</td><td>Vitalité</td></tr>
+      <tr><td>Hunger</td><td>Rations</td></tr>
+      <tr><td>Creeper</td><td>Rôdeur Silencieux</td></tr>
+      <tr><td>Enderman</td><td>Spectre du Néant</td></tr>
+      <tr><td>Respawn Anchor</td><td>Pierre d'Ancrage</td></tr>
+      <tr><td>Bed</td><td>Couche de Fortune</td></tr>
+      <tr><td>Campfire</td><td>Feu de Survivant</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  MITE-FR — Wiki Complet v1.0 &nbsp;|&nbsp; Inspiré de <em>Minecraft Is Too Easy</em> (Avernite, 2014)<br>
+  Pour Minecraft 1.20.4 via Fabric Loader — Compilez les sources avec <code>./gradlew build</code>
+</footer>
+
+</main>
+</div>
+
+<script>
+// Era accordion
+function toggleEra(card) {
+  card.classList.toggle('open');
+}
+
+// Active sidebar link on scroll
+const sections = document.querySelectorAll('.section[id], .hero');
+const sideLinks = document.querySelectorAll('aside a');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      sideLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Animate stat bars on load
+window.addEventListener('load', () => {
+  document.querySelectorAll('.stat-fill').forEach(el => {
+    const w = el.style.width;
+    el.style.width = '0';
+    setTimeout(() => el.style.width = w, 200);
+  });
+});
+
+// Open first era by default
+document.querySelector('.era-card')?.classList.add('open');
+</script>
+</body>
+</html>
